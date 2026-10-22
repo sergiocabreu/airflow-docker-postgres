@@ -1,0 +1,42 @@
+services:
+  postgres:
+    container_name: laboratorio-postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - laboratorio
+    volumes:
+      - laboratorio_postgres_data:/var/lib/postgresql
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  airflow:
+    container_name: laboratorio-airflow
+    image: laboratorio/airflow
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./dags:/home/airflow/airflow/dags
+    ports:
+      - "8080:8080"
+    networks:
+      - laboratorio
+    command: tail -f /dev/null
+
+volumes:
+  laboratorio_postgres_data:
+    name: laboratorio_postgres_data
+
+networks:
+  laboratorio:
+    name: laboratorio
