@@ -1,10 +1,8 @@
 #!/bin/bash
 set -e
 
-# Versões fixas (nada de "latest")
-AIRFLOW_VERSION=3.0.2
-PYTHON_VERSION=3.12
-CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+# Versões fixas (nada de "latest"), definidas em configuracao_instalacao.sh
+source "$(dirname "$0")/configuracao_instalacao.sh"
 
 # Usuário dedicado para o Airflow
 id -u airflow &>/dev/null || useradd -m -s /bin/bash airflow

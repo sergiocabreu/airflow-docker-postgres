@@ -31,7 +31,6 @@ services:
       - "8080:8080"
     networks:
       - laboratorio
-    command: tail -f /dev/null
 
 volumes:
   laboratorio_postgres_data:
