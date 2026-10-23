@@ -25,10 +25,10 @@ API_URL = "https://api-dados-abertos.cearatransparente.ce.gov.br/transparencia/c
 
 # Conexao com o Postgres.
 # host = nome do container do Postgres (os dois containers na mesma rede Docker)
-# port = porta INTERNA do container (5432), nao a mapeada no host (5433)
-PG_HOST = "aula_postgres"
+# port = porta INTERNA do container (5432)
+PG_HOST = "laboratorio-postgres"
 PG_PORT = 5432
-PG_USER = "postgres"
+PG_USER = "airflow"
 PG_PASSWORD = "1234"
 PG_DATABASE = "airflow"
 PG_TABLE = "convenios"
