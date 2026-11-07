@@ -170,6 +170,11 @@ def preparar_pagina(registros: list[dict]) -> list[dict]:
     df["data_assinatura_dt"] = converter_data_assinatura(df["data_assinatura"])
     df = df.dropna(subset=["data_assinatura_dt"]).drop(columns=["data_assinatura_dt"])
 
+    # Colunas inteiras com nulos viram float64 com NaN no pandas; o psycopg2 envia
+    # NaN como 'NaN'::float, que estoura em colunas INTEGER/BIGINT ("out of range").
+    # Converte para object e troca NaN/NaT por None (NULL no Postgres).
+    df = df.astype(object).where(df.notna(), None)
+
     return df.to_dict(orient="records")
 
 

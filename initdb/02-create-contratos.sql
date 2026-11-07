@@ -2,7 +2,7 @@
 \c airflow airflow
 
 CREATE TABLE IF NOT EXISTS contratos (
-    id INTEGER PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     cod_concedente TEXT,
     cod_financiador TEXT,
     cod_gestora TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS contratos (
     data_assinatura TEXT,
     data_processamento TEXT,
     data_termino TEXT,
-    flg_tipo INTEGER,
+    flg_tipo BIGINT,
     isn_parte_destino BIGINT,
     isn_sic BIGINT,
     isn_modalidade BIGINT,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS contratos (
     calculated_valor_empenhado NUMERIC(18,2),
     calculated_valor_pago NUMERIC(18,2),
     contract_type TEXT,
-    infringement_status INTEGER,
+    infringement_status BIGINT,
     cod_financiador_including_zeroes TEXT,
     accountability_status TEXT,
     plain_cpf_cnpj_financiador TEXT,
@@ -62,11 +62,11 @@ CREATE TABLE IF NOT EXISTS contratos (
     confidential BOOLEAN,
     gestor_contrato TEXT,
     data_finalizacao_prestacao_contas TEXT,
-    sequential INTEGER,
+    sequential BIGINT,
     emergency BOOLEAN,
     law TEXT,
     has_non_profit_transfer BOOLEAN,
     nome_fiscal TEXT,
     emenda_parlamentar TEXT,
-    ano_emenda_parlamentar INTEGER,
+    ano_emenda_parlamentar BIGINT,
     codigo_emenda_parlamentar TEXT);
